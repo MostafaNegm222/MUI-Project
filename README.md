@@ -1,16 +1,31 @@
-# React + Vite
+# MUI Store
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A small React product-catalogue front end built with Material UI. It lists products from the public [DummyJSON](https://dummyjson.com) API, with search, category filter and sorting, plus a login form and a custom MUI theme. It is a practice project and some pages are unfinished.
 
-Currently, two official plugins are available:
+## What works
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+- **Home, About and Products pages** with a shared layout (navbar with a user menu, footer) using React Router.
+- **Products page:** product cards from `https://dummyjson.com/products`, live search by title, category filter and sort (title, price, rating, discount, stock) in ascending or descending order. The filter and sort panels open from an "Advanced Search" drawer.
+- **Login page:** React Hook Form with a Yup schema (username 3 to 20 characters, password at least 6). It posts to `https://dummyjson.com/auth/login` and shows the server error message when the credentials are wrong.
+- **Custom MUI theme** (palette, typography, component overrides) under `src/theme/`. The mode is read from `localStorage` (`theme`, default `light`).
 
-## React Compiler
+## Not finished
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+- The product details page (`/products/:id`) is a placeholder.
+- Login does not store the token or redirect after success. The response is only logged to the console.
+- There is no theme toggle button yet, and no tests.
 
-## Expanding the ESLint configuration
+## Tech stack
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+React 19, Vite, Material UI 7 (with Emotion), React Router 7, Axios, React Hook Form, Yup
+
+## Run it locally
+
+```bash
+npm install
+npm run dev
+```
+
+Then open the address Vite prints. Other scripts: `npm run build`, `npm run preview`, `npm run lint`.
+
+The login form works with DummyJSON's demo users (see the DummyJSON docs for credentials). An internet connection is needed because all data comes from the DummyJSON API.
